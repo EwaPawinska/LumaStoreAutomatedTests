@@ -7,5 +7,4 @@ public class HomePage {
 
     @Getter
     private final SelenideElement logoImage = $("a.logo");
-
 }
