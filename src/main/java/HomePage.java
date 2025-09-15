@@ -3,8 +3,8 @@ import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Getter
 public class HomePage {
 
-    @Getter
-    private final SelenideElement logoImage = $("a.logo");
+    private final SelenideElement logoImage = $("a.navbar-brand");
 }

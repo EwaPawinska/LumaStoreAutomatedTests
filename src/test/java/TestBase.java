@@ -1,31 +1,25 @@
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import static com.codeborne.selenide.Selenide.open;
 
 public class TestBase {
 
     @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--incognito", "disable-infobars", "--disable-notifications");
-        chromeOptions.addArguments("disable-infobars");
-        WebDriver driver = new ChromeDriver(chromeOptions);
-        Configuration.timeout = 5000L;
-        Configuration.pollingInterval = 500L;
-        Configuration.headless = false;
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
         WebDriverRunner.setWebDriver(driver);
-        open("https://magento.softwaretestingboard.com/");
+        open("https://luma.enablementadobe.com/content/luma/us/en.html");
     }
 
     @After
     public void tearDown() {
-        WebDriverRunner.closeWebDriver();
+        WebDriverRunner.getWebDriver().quit();
     }
 }
